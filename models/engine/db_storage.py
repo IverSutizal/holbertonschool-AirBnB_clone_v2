@@ -35,7 +35,7 @@ class DBStorage:
         if "HBNB_ENV" in os.environ and os.environ["HBNB_ENV"] == "test":
             Base.metadata.drop_all(self.__engine)
 
-    def list_to_dict(self, l):
+    def list_to_dict(self, li):
         """
             Transform a list of objects
             into dict where
@@ -43,7 +43,7 @@ class DBStorage:
             value = the object himself
         """
         d = {}
-        for obj in l:
+        for obj in li:
             key = obj.__class__.__name__ + '.' + obj.id
             d[key] = obj
         return d
@@ -61,8 +61,8 @@ class DBStorage:
                     tmp_l.append(o)
             return self.list_to_dict(tmp_l)
         else:
-            l = self.__session.query(cls).all()
-            return self.list_to_dict(l)
+            li = self.__session.query(cls).all()
+            return self.list_to_dict(li)
 
     def new(self, obj):
         """

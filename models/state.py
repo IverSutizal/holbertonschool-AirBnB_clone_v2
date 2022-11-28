@@ -25,8 +25,8 @@ class State(BaseModel, Base):
                 return the list of City objects
                 from storage linked to the current State
             """
-            l = []
+            li = []
             for k, v in models.storage.all(City).items():
                 if v.state_id == self.id:
-                    l.append(v)
+                    li.append(v)
             return
